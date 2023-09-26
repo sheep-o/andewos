@@ -13,7 +13,7 @@ build/kernel.o: kernel/kernel.c
 build/entry.o: kernel/entry.asm
 	$(ASM) -f elf $^ -o $@
 
-build/kernel.bin: build/kernel.o build/entry.o
+build/kernel.bin: build/entry.o build/kernel.o 
 	$(LD) -melf_i386 -o $@ -Ttext 0x1000 $^ --oformat binary
 
 build/andewos.bin: build/boot.bin build/kernel.bin

@@ -1,4 +1,11 @@
+void print() {
+	char *vmem = (char *)0xb8000;
+	vmem[0] = 'Z';
+}
+
 void main() {
-    char* video_memory = (char*) 0xb8000;
-    *video_memory = 'P';
+	char *vmem = (char *)0xb8000;
+	vmem[0] = 'M';
+
+	print();
 }
