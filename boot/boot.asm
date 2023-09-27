@@ -5,7 +5,7 @@ mov [BOOT_DRIVE], dl
 mov bp, 0x8000
 mov sp, bp
 
-mov dh, 0x01
+mov dh, 0x02
 mov bx, 0x1000
 mov dl, [BOOT_DRIVE]
 call disk_load

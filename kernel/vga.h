@@ -43,11 +43,11 @@ void kv_clear() {
 	kv_set_cursor(0);
 }
 
-inline int kv_get_row() {
+int kv_get_row() {
 	return (kv_get_cursor() - VGA_VMEM_ADDR) / 2 / VGA_MAX_ROWS;
 }
 
-inline int kv_get_col() {
+int kv_get_col() {
 	return (kv_get_cursor() - VGA_VMEM_ADDR) / 2 / VGA_MAX_COLS;
 }
 
