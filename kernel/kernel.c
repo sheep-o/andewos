@@ -2,7 +2,7 @@
 
 void main() {
 	kv_clear();
-	//kv_puts("Welcome\nto andewOS!");
-	kv_puts("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nXX");
+	kv_puts("Welcome to andewOS!\n");
+	kv_puts("> ");
 	for (;;) {}
 }
