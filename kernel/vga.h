@@ -44,11 +44,11 @@ void kv_clear() {
 }
 
 int kv_get_row() {
-	return (kv_get_cursor() - VGA_VMEM_ADDR) / 2 / VGA_MAX_ROWS;
+	return kv_get_cursor() / 2 / VGA_MAX_COLS;
 }
 
 int kv_get_col() {
-	return (kv_get_cursor() - VGA_VMEM_ADDR) / 2 / VGA_MAX_COLS;
+	return kv_get_cursor() / 2 / VGA_MAX_ROWS;
 }
 
 void kv_puts(const char *str) {
@@ -56,10 +56,18 @@ void kv_puts(const char *str) {
 
 	char *vmem = (char *) (VGA_VMEM_ADDR + cursor);
 	while (str[0]) {
-		vmem[0] = str[0];
-		vmem[1] = WHITE_ON_BLACK;
-		vmem+=2;
-		cursor+=2;
+		if (str[0] == '\n') {
+			kv_set_cursor(cursor);
+			int next_row = (kv_get_row() + 1) * VGA_MAX_COLS * 2;
+			int offset = next_row - cursor;
+			cursor += offset;
+			vmem += offset;
+		} else {
+			vmem[0] = str[0];
+			vmem[1] = WHITE_ON_BLACK;
+			cursor+=2;
+			vmem+=2;
+		}
 		str++;
 	}
 
