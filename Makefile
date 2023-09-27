@@ -7,8 +7,8 @@ all: test
 build/boot.bin: boot/boot.asm
 	$(ASM) -f bin $^ -o $@
 
-build/kernel.o: kernel/kernel.c
-	$(CC) -m32 -ffreestanding -c $^ -o $@
+build/kernel.o: kernel/kernel.c kernel/port.h kernel/vga.h
+	$(CC) -m32 -ffreestanding -Ikernel/ -c $< -o $@
 
 build/entry.o: kernel/entry.asm
 	$(ASM) -f elf $^ -o $@
